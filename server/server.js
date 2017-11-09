@@ -4,8 +4,6 @@ const http = require('http');
 const path = require('path');
 const sqldb = require('./sqldb');
 const bodyParser = require('body-parser');
-const pugToHtml = require('./pugToHtml');
-
 const config = require('./config');
 const app = express();
 
@@ -18,7 +16,25 @@ app.post('/report', bodyParser.json(), (req, res) => {
 });
 
 app.get('/report/:id', (req, res) => {
-    //
+	try{
+		var reportModel = sqldb().report;
+		reportModel.findOne({
+			where: {
+					id: req.params.id
+				}
+			})
+	        .then(function reportFindAll(reports) {
+	        	if (reports == null){
+	        		reports = {};
+	        	}
+	        	res.send(reports);
+	        })
+	        .catch(function(req, res){
+	        	res.send({});
+	        });
+	}catch(err){
+		res.send({});
+	}
 });
 
 
