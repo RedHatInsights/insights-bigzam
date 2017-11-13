@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  const report = sequelize.define('report', {
+  let report = sequelize.define('report', {
     report: DataTypes.STRING,
     image_id: DataTypes.STRING,
     createdAt: {
