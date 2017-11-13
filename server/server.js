@@ -13,7 +13,7 @@ app.set('port', config.port);
 // routes
 app.post('/report', bodyParser.json(), (req, res) => {
     try{
-		const reportRow = req.body;
+		let reportRow = req.body;
 		reportRow.createdAt = Date.now();
 
 		const reportModel = sqldb().report;
