@@ -26,26 +26,6 @@ html
                             tr
                                 td Operating System
                                 td {{ system.metadata.release }}
-            //- .tab-content
-            .d-flex.flex-row
-                .card.rounded-0(style='margin:5px')
-                    .card-header 
-                        strong BIOS
-                    .card-body.p-2
-                        ul(v-for='(val, key) in system.metadata.bios_information')
-                            strong {{ key }}
-                            br
-                            span {{ val }}
-                .card.rounded-0(style='margin:5px')
-                    .card-header 
-                        strong System
-                    .card-body.p-2
-                        ul(v-for='(val, key) in system.metadata.system_information')
-                            strong {{ key }}
-                            br
-                            span {{ val }}
-
-
                         
             //- separator
             .d-flex.flex-row-reverse
