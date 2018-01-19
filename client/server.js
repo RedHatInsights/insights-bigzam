@@ -2,7 +2,8 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-const request = require('request');
+// const request = require('request');
+const fs = require('fs');
 const pugToHtml = require('./pugToHtml');
 
 const config = require('./config');
@@ -17,15 +18,27 @@ app.use(express.static(publicDir));
 app.use('/scripts', express.static(scriptsDir));
 
 app.get('/reports/', (req, res) => {
-    request
-    .get('http://' + process.env.BIGZAM_API + '/reports/')
-    .pipe(res);
+    // request
+    // .get('http://' + process.env.BIGZAM_API + '/reports/')
+    // .pipe(res);
+    fs.readFile(path.join(__dirname, 'test-reports.json'), (err, data) => {
+        if (err) {
+            res.status(500).send();
+        }
+        res.status(200).send(data);
+    });
 });
 
 app.get('/reports/:id', (req, res) => {
-    request
-    .get('http://' + process.env.BIGZAM_API + '/reports/' + req.params.id)
-    .pipe(res);
+    // request
+    // .get('http://' + process.env.BIGZAM_API + '/reports/' + req.params.id)
+    // .pipe(res);
+    fs.readFile(path.join(__dirname, 'test-report.json'), (err, data) => {
+        if (err) {
+            res.status(500).send();
+        }
+        res.status(200).send(data.toString());
+    });
 });
 
 app.get('/*', (req, res) => {
