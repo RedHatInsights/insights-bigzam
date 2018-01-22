@@ -13,7 +13,7 @@ gulp.task('bsync', ['nodemon'], () => {
     });
 });
 
-gulp.task('nodemon', ['initfiles'], (done) => {
+gulp.task('nodemon', (done) => {
     let started = false;
     return nodemon({
         script: 'server.js',
